@@ -1,0 +1,90 @@
+<UserControl x:Class="Finsight.Client.Scenarios.Orders.OrdersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:dg="clr-namespace:Finsight.Client.AppFrame.CustomControls"
+             xmlns:conv="clr-namespace:Finsight.Client.Converters"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/AppFrame/Styles/Buttons.xaml"/>
+                <ResourceDictionary Source="/AppFrame/Styles/DataGrid.xaml"/>
+                <ResourceDictionary Source="/AppFrame/Styles/TextBox.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <conv:EnumConverter x:Key="EnumConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal"
+                    Margin="10">
+            <Button Content="Добавить"
+                    Margin="0,0,10,0"
+                    Style="{StaticResource RoundedButton}"
+                    Command="{Binding AddOrderCommand}"/>
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Top">
+                <fa:ImageAwesome Icon="Search"
+                                  Height="20"
+                                  Width="20"
+                                  Foreground="{StaticResource titleColor4}"/>
+                <TextBox Tag="Поиск..."
+                         Margin="5,5,0,0"
+                         FontSize="13"
+                         Height="24"
+                         Width="300"
+                         Background="Transparent"
+                         Style="{StaticResource SingleLineSearchBox}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <dg:ExtendedDataGrid Grid.Row="1"
+                             Margin="10"
+                             SnapsToDevicePixels="True"
+                             EditRowCommand="{Binding EditOrderCommand}"
+                             DeleteRowCommand="{Binding DeleteOrderCommand}"
+                             ItemsSource="{Binding Orders}"
+                             SelectedItem="{Binding SelectedOrder}"
+                             AutoGenerateColumns="False"
+                             Style="{StaticResource DataGridStyle}"
+                             CellStyle="{StaticResource DataGridCellStyle}"
+                             RowStyle="{StaticResource DataGridRowStyle}">
+            <dg:ExtendedDataGrid.Columns>
+                <DataGridTextColumn Header="Компания"
+                                    Width="*"
+                                    Binding="{Binding Customer.CompanyName}"/>
+                <DataGridTextColumn Header="Исполнитель"
+                                    Width="*"
+                                    Binding="{Binding Executor.DisplayName}"/>
+                <DataGridTextColumn Header="Создан"
+                                    Width="*"
+                                    Binding="{Binding StartDate}"/>
+                <DataGridTextColumn Header="Истекает"
+                                    Width="*"
+                                    Binding="{Binding ExpireDate}"/>
+                <DataGridTextColumn Header="Описание"
+                                    Width="*"
+                                    Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Комментарий"
+                                    Width="*"
+                                    Binding="{Binding Comment}"/>
+                <DataGridTextColumn Header="Стоимость, руб."
+                                    Width="*"
+                                    Binding="{Binding Price}"/>
+                <DataGridTextColumn Header="Статус"
+                                    Width="*"
+                                    Binding="{Binding Status, Converter={StaticResource EnumConverter}}"/>
+            </dg:ExtendedDataGrid.Columns>
+        </dg:ExtendedDataGrid>
+    </Grid>
+</UserControl>

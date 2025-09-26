@@ -1,0 +1,135 @@
+<UserControl x:Class="Finsight.Client.Scenarios.Users.Card.UserCardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ph="clr-namespace:Finsight.Client.AppFrame.CustomControls"
+             xmlns:enum="clr-namespace:Finsight.Client.Extensions"
+             xmlns:contract="clr-namespace:Finsight.Contract.Enum;assembly=Finsight.Contract"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d"
+             Width="450"
+             Height="500"
+             d:DesignHeight="500"
+             d:DesignWidth="450">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/AppFrame/Styles/Buttons.xaml"/>
+                <ResourceDictionary Source="/AppFrame/Styles/TextBox.xaml"/>
+                <ResourceDictionary Source="/AppFrame/Styles/TextBlock.xaml"/>
+                <ResourceDictionary Source="/AppFrame/Styles/ComboBox.xaml"/>
+                <ResourceDictionary Source="/AppFrame/Styles/UIColors.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <ScrollViewer Padding="20"
+                  Background="{StaticResource MainBackgroundBrush}"
+                  VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0"
+                  Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <fa:ImageAwesome Grid.Column="0"
+                                  Icon="UserMd"
+                                  Width="34"
+                                  Foreground="Black"
+                                  VerticalAlignment="Center"
+                                  Margin="0,0,10,0"/>
+                <TextBlock Grid.Column="1"
+                           Text="{Binding Title}"
+                           Style="{StaticResource BaseTextBlock}"
+                           FontSize="24"
+                           VerticalAlignment="Center"
+                           TextWrapping="Wrap"/>
+            </Grid>
+
+            <StackPanel Grid.Row="1"
+                        Margin="0,0,0,15">
+                <TextBlock Text="Логин"
+                           Margin="0,0,0,5"
+                           FontSize="13"
+                           FontFamily="Montserrat"
+                           Foreground="DimGray"/>
+                <TextBox Text="{Binding Login}"
+                         Height="30"
+                         Style="{StaticResource WatermarkTxtBox}"
+                         Tag="Логин"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2"
+                        Margin="0,0,0,15">
+                <TextBlock Text="Имя"
+                           Margin="0,0,0,5"
+                           FontSize="13"
+                           FontFamily="Montserrat"
+                           Foreground="DimGray"/>
+                <TextBox Text="{Binding DisplayName}"
+                         Height="30"
+                         Style="{StaticResource WatermarkTxtBox}"
+                         Tag="Имя"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="3"
+                        Margin="0,0,0,15">
+                <TextBlock Text="Пароль"
+                           Margin="0,0,0,5"
+                           FontSize="13"
+                           FontFamily="Montserrat"
+                           Foreground="DimGray"/>
+                <ph:ExtPassBox x:Name="PasswordBox"
+                               Height="35"/>
+                <TextBlock Text="Пароль должен быть не менее 8 символов."
+                           Margin="15,5,0,0"
+                           TextWrapping="Wrap"
+                           Foreground="Black"
+                           FontSize="11"
+                           HorizontalAlignment="Left"
+                           FontFamily="Montserrat"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="4"
+                        Margin="0,0,0,20">
+                <TextBlock Text="Роль"
+                           Margin="0,0,0,5"
+                           FontSize="13"
+                           FontFamily="Montserrat"
+                           Foreground="DimGray"/>
+                <ComboBox ItemsSource="{enum:EnumLocalization {x:Type contract:UserRole}}"
+                                       SelectedValue="{Binding Role}"
+                                       SelectedValuePath="Value"
+                                       DisplayMemberPath="Display"
+                                       Height="35"
+                                       Style="{StaticResource ComboBoxCard}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="5"
+                        HorizontalAlignment="Center">
+                <TextBlock Text="{Binding ValidationErrorText}"
+                           Margin="0,0,0,10"
+                           FontSize="11"
+                           Foreground="DarkRed"
+                           TextAlignment="Center"
+                           FontWeight="Medium"/>
+                <Button Content="Сохранить"
+                        Width="160"
+                        Foreground="WhiteSmoke"
+                        Style="{StaticResource RoundedButton}"
+                        Command="{Binding SaveCommand}"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

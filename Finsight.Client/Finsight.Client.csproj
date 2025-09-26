@@ -1,0 +1,138 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <PackageIcon>Finsight.png</PackageIcon>
+    <ApplicationIcon>Finsight.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="AssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Finsight.png" />
+    <None Remove="Resources\Images\12x12x_Refresh.png" />
+    <None Remove="Resources\Images\12x12_AchtungBlack.png" />
+    <None Remove="Resources\Images\12x12_Calculations.png" />
+    <None Remove="Resources\Images\12x12_Create.png" />
+    <None Remove="Resources\Images\12x12_Delete.png" />
+    <None Remove="Resources\Images\12x12_Edit.png" />
+    <None Remove="Resources\Images\12x12_Excel365.png" />
+    <None Remove="Resources\Images\12x12_exit.png" />
+    <None Remove="Resources\Images\12x12_InRepair.png" />
+    <None Remove="Resources\Images\12x12_Modeling.png" />
+    <None Remove="Resources\Images\12x12_Movements.png" />
+    <None Remove="Resources\Images\12x12_Nail.png" />
+    <None Remove="Resources\Images\12x12_NailHoriz.png" />
+    <None Remove="Resources\Images\12x12_Padlock.png" />
+    <None Remove="Resources\Images\12x12_Pasport.png" />
+    <None Remove="Resources\Images\12x12_PasportAnalis.png" />
+    <None Remove="Resources\Images\12x12_PasportSpoilage.png" />
+    <None Remove="Resources\Images\12x12_Printer.png" />
+    <None Remove="Resources\Images\12x12_Rect.png" />
+    <None Remove="Resources\Images\12x12_Redo.png" />
+    <None Remove="Resources\Images\12x12_RefreshAuto.png" />
+    <None Remove="Resources\Images\12x12_Report.png" />
+    <None Remove="Resources\Images\12x12_Ruler.png" />
+    <None Remove="Resources\Images\12x12_Spread.png" />
+    <None Remove="Resources\Images\12x12_Stocks.png" />
+    <None Remove="Resources\Images\12x12_toWork.png" />
+    <None Remove="Resources\Images\12x12_Undo.png" />
+    <None Remove="Resources\Images\13x13_Achtung.png" />
+    <None Remove="Resources\Images\13x13_Decrease.png" />
+    <None Remove="Resources\Images\13X13_Idle.png" />
+    <None Remove="Resources\Images\13X13_Increase.png" />
+    <None Remove="Resources\Images\13х13_Copy.png" />
+    <None Remove="Resources\Images\14X13_Arrows_swap_vertical.png" />
+    <None Remove="Resources\Images\14x14_Menu.png" />
+    <None Remove="Resources\Images\18x16_MainMenu.png" />
+    <None Remove="Resources\Images\8x8_TabClose.png" />
+    <None Remove="Resources\Images\clients.png" />
+    <None Remove="Resources\Images\clientss.png" />
+    <None Remove="Resources\Images\delete-icon.png" />
+    <None Remove="Resources\Images\employee.png" />
+    <None Remove="Resources\Images\login-background.png" />
+    <None Remove="Resources\Images\login-icon.png" />
+    <None Remove="Resources\Images\logo-transparent.png" />
+    <None Remove="Resources\Images\main-logo.png" />
+    <None Remove="Resources\Images\orders.png" />
+    <None Remove="Resources\Images\password-logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="AssemblyInfo.cs">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Finsight.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.7.25104.5739" />
+    <PackageReference Include="Flurl.Http" Version="4.0.2" />
+    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Unity" Version="5.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Finsight.Contract\Finsight.Contract.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\clients.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\delete-icon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\employee.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\login-background.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\login-icon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\main-logo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\orders.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\password-logo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Localization.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Localization.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Images.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Images.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Localization.resx">
+      <LastGenOutput>Localization.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Images.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Images.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

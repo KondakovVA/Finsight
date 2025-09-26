@@ -1,0 +1,83 @@
+<UserControl x:Class="Finsight.Client.Scenarios.Customers.CustomersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:dg="clr-namespace:Finsight.Client.AppFrame.CustomControls"
+             xmlns:conv="clr-namespace:Finsight.Client.Converters"
+             xmlns:res="clr-namespace:Finsight.Client.Properties"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/AppFrame/Styles/Buttons.xaml"/>
+                <ResourceDictionary Source="/AppFrame/Styles/DataGrid.xaml"/>
+                <ResourceDictionary Source="/AppFrame/Styles/TextBox.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <conv:EnumConverter x:Key="EnumConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal"
+                    Margin="10">
+            <Button Content="{x:Static res:Localization.Add}"
+                    Margin="0,0,10,0"
+                    Style="{StaticResource RoundedButton}"
+                    Command="{Binding AddCustomerCommand}"/>
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Top">
+                <fa:ImageAwesome Icon="Search"
+                                  Height="20"
+                                  Width="20"
+                                  Foreground="{StaticResource titleColor4}"/>
+                <TextBox Tag="{x:Static res:Localization.SearchWithDots}"
+                         Margin="5,5,0,0"
+                         FontSize="13"
+                         Height="24"
+                         Width="300"
+                         Background="Transparent"
+                         Style="{StaticResource SingleLineSearchBox}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <dg:ExtendedDataGrid Grid.Row="1"
+                             Margin="10"
+                             SnapsToDevicePixels="True"
+                             EditRowCommand="{Binding EditCustomerCommand}"
+                             DeleteRowCommand="{Binding DeleteCustomerCommand}"
+                             ItemsSource="{Binding Customers}"
+                             SelectedItem="{Binding SelectedCustomer}"
+                             AutoGenerateColumns="False"
+                             Style="{StaticResource DataGridStyle}"
+                             CellStyle="{StaticResource DataGridCellStyle}"
+                             RowStyle="{StaticResource DataGridRowStyle}">
+            <dg:ExtendedDataGrid.Columns>
+                <DataGridTextColumn Header="{x:Static res:Localization.Company}"
+                                    Width="*"
+                                    Binding="{Binding CompanyName}"/>
+                <DataGridTextColumn Header="{x:Static res:Localization.ContactName}"
+                                    Width="*"
+                                    Binding="{Binding ContactName}"/>
+                <DataGridTextColumn Header="{x:Static res:Localization.Email}"
+                                    Width="*"
+                                    Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="{x:Static res:Localization.Phone}"
+                                    Width="*"
+                                    Binding="{Binding Phone}"/>
+                <DataGridTextColumn Header="{x:Static res:Localization.Status}"
+                                    Width="*"
+                                    Binding="{Binding Status, Converter={StaticResource EnumConverter}}"/>
+                <DataGridTextColumn Header="{x:Static res:Localization.Added}"
+                                    Width="*"
+                                    Binding="{Binding CreatedDate}"/>
+            </dg:ExtendedDataGrid.Columns>
+        </dg:ExtendedDataGrid>
+    </Grid>
+</UserControl>
